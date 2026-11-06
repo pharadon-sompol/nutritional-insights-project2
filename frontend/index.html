@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Cloud-hosted nutritional data dashboard" />
+    <title>Nutritional Insights Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+    <script src="config.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <nav>
+          <a class="brand" href="#">N<span>/</span>Insights</a>
+          <div class="cloud-status"><span class="status-dot"></span> Azure cloud dashboard</div>
+        </nav>
+        <div class="hero-copy">
+          <p class="eyebrow">CPSY 300 · Project 2</p>
+          <h1>Nutrition data,<br /><em>made clear.</em></h1>
+          <p class="lede">Explore how protein, carbohydrates, and fat vary across thousands of recipes and popular diet types.</p>
+        </div>
+        <div class="hero-orb" aria-hidden="true"></div>
+      </header>
+
+      <main>
+        <section class="control-bar" aria-label="Dashboard controls">
+          <div class="control-copy">
+            <span class="label">Dataset view</span>
+            <strong id="view-title">All diet types</strong>
+          </div>
+          <label>
+            <span class="sr-only">Filter by diet type</span>
+            <select id="diet-filter">
+              <option value="all">All diet types</option>
+            </select>
+          </label>
+          <button id="refresh-button" class="button primary" type="button">Refresh cloud data</button>
+          <button id="reset-button" class="button secondary" type="button">Reset</button>
+        </section>
+
+        <div id="notice" class="notice" role="status">Connecting to the Azure Function…</div>
+
+        <section class="metric-grid" aria-label="Summary statistics">
+          <article class="metric-card dark">
+            <span>Recipes analyzed</span>
+            <strong id="recipe-count">—</strong>
+            <small>records from the active view</small>
+          </article>
+          <article class="metric-card coral">
+            <span>Diet types</span>
+            <strong id="diet-count">—</strong>
+            <small>unique categories</small>
+          </article>
+          <article class="metric-card lime">
+            <span>Average protein</span>
+            <strong><span id="average-protein">—</span><sup>g</sup></strong>
+            <small>across selected recipes</small>
+          </article>
+          <article class="metric-card cream">
+            <span>Function time</span>
+            <strong><span id="execution-time">—</span><sup>ms</sup></strong>
+            <small>server-side processing</small>
+          </article>
+        </section>
+
+        <section class="chart-grid">
+          <article class="panel span-2">
+            <div class="panel-heading">
+              <div><span class="kicker">Comparison</span><h2>Average macronutrients</h2></div>
+              <span class="unit">grams</span>
+            </div>
+            <div class="chart-wrap tall"><canvas id="macro-chart"></canvas></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div><span class="kicker">Distribution</span><h2>Recipes by diet</h2></div>
+            </div>
+            <div class="chart-wrap"><canvas id="distribution-chart"></canvas></div>
+          </article>
+
+          <article class="panel span-2">
+            <div class="panel-heading">
+              <div><span class="kicker">Relationship</span><h2>Protein vs. carbohydrates</h2></div>
+              <span class="unit">top protein recipes</span>
+            </div>
+            <div class="chart-wrap tall"><canvas id="scatter-chart"></canvas></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div><span class="kicker">Correlation</span><h2>Nutrient heatmap</h2></div>
+            </div>
+            <div id="heatmap" class="heatmap" aria-label="Nutrient correlation matrix"></div>
+          </article>
+        </section>
+
+        <section class="table-panel">
+          <div class="panel-heading table-heading">
+            <div><span class="kicker">Recipe explorer</span><h2>Highest-protein recipes</h2></div>
+            <label class="search-box"><span class="sr-only">Search recipes</span><input id="recipe-search" type="search" placeholder="Search recipe or cuisine" /></label>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Recipe</th><th>Diet</th><th>Cuisine</th><th>Protein</th></tr></thead>
+              <tbody id="recipe-table"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <footer>
+          <div><strong>Nutritional Insights</strong><span>Powered by Azure Functions &amp; Blob Storage</span></div>
+          <div class="metadata"><span id="data-source">Source: —</span><span id="processed-at">Updated: —</span></div>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>
