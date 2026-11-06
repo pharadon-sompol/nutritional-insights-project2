@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Cloud-hosted nutritional data dashboard" />
     <title>Nutritional Insights Dashboard</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
     <script src="config.js" defer></script>
@@ -17,18 +14,17 @@
     <div class="page-shell">
       <header class="hero">
         <nav>
-          <a class="brand" href="#">N<span>/</span>Insights</a>
-          <div class="cloud-status"><span class="status-dot"></span> Azure cloud dashboard</div>
+          <a class="brand" href="#">Nutritional Insights</a>
+          <div class="cloud-status"><span class="status-dot"></span> Azure Cloud Dashboard</div>
         </nav>
-        <div class="hero-copy">
-          <p class="eyebrow">CPSY 300 · Project 2</p>
-          <h1>Nutrition data,<br /><em>made clear.</em></h1>
-          <p class="lede">Explore how protein, carbohydrates, and fat vary across thousands of recipes and popular diet types.</p>
-        </div>
-        <div class="hero-orb" aria-hidden="true"></div>
       </header>
 
       <main>
+        <section class="hero-copy">
+          <p class="eyebrow">CPSY 300 · Project 2</p>
+          <h1>Explore Nutritional Insights</h1>
+          <p class="lede">Compare macronutrients and recipe patterns across different diet types.</p>
+        </section>
         <section class="control-bar" aria-label="Dashboard controls">
           <div class="control-copy">
             <span class="label">Dataset view</span>
@@ -47,22 +43,22 @@
         <div id="notice" class="notice" role="status">Connecting to the Azure Function…</div>
 
         <section class="metric-grid" aria-label="Summary statistics">
-          <article class="metric-card dark">
+          <article class="metric-card blue">
             <span>Recipes analyzed</span>
             <strong id="recipe-count">—</strong>
             <small>records from the active view</small>
           </article>
-          <article class="metric-card coral">
+          <article class="metric-card green">
             <span>Diet types</span>
             <strong id="diet-count">—</strong>
             <small>unique categories</small>
           </article>
-          <article class="metric-card lime">
+          <article class="metric-card purple">
             <span>Average protein</span>
             <strong><span id="average-protein">—</span><sup>g</sup></strong>
             <small>across selected recipes</small>
           </article>
-          <article class="metric-card cream">
+          <article class="metric-card orange">
             <span>Function time</span>
             <strong><span id="execution-time">—</span><sup>ms</sup></strong>
             <small>server-side processing</small>

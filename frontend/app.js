@@ -1,5 +1,5 @@
 const apiUrl = window.APP_CONFIG?.API_URL || "/api/insights";
-const palette = ["#ff725e", "#8d7cf6", "#8bd9d2", "#c8f36a", "#f0b35a", "#587a72"];
+const palette = ["#2563eb", "#16a34a", "#7c3aed", "#ea580c", "#0891b2", "#64748b"];
 const charts = {};
 let latestPayload = null;
 
@@ -67,7 +67,7 @@ function renderCharts(payload) {
     type: "doughnut",
     data: {
       labels: distribution.map((item) => item.diet),
-      datasets: [{ data: distribution.map((item) => item.recipes), backgroundColor: palette, borderColor: "#fffdf8", borderWidth: 3 }]
+      datasets: [{ data: distribution.map((item) => item.recipes), backgroundColor: palette, borderColor: "#ffffff", borderWidth: 3 }]
     },
     options: { responsive: true, maintainAspectRatio: false, cutout: "62%", plugins: { legend: { position: "bottom", labels: { boxWidth: 10, usePointStyle: true } } } }
   });
@@ -84,7 +84,7 @@ function renderCharts(payload) {
     },
     options: {
       ...chartOptions("Protein (g)"),
-      scales: { x: { title: { display: true, text: "Carbohydrates (g)" }, grid: { color: "#ebe6dd" } }, y: { title: { display: true, text: "Protein (g)" }, grid: { color: "#ebe6dd" } } },
+      scales: { x: { title: { display: true, text: "Carbohydrates (g)" }, grid: { color: "#e5e7eb" } }, y: { title: { display: true, text: "Protein (g)" }, grid: { color: "#e5e7eb" } } },
       plugins: { legend: { position: "bottom", labels: { usePointStyle: true, boxWidth: 10 } }, tooltip: { callbacks: { label: (context) => `${context.raw.recipe}: ${context.raw.y}g protein, ${context.raw.x}g carbs` } } }
     }
   });
@@ -98,7 +98,7 @@ function chartOptions(yTitle) {
     maintainAspectRatio: false,
     interaction: { mode: "nearest", intersect: false },
     plugins: { legend: { position: "bottom", labels: { usePointStyle: true, boxWidth: 10 } } },
-    scales: { x: { grid: { display: false } }, y: { beginAtZero: true, title: { display: true, text: yTitle }, grid: { color: "#ebe6dd" } } }
+    scales: { x: { grid: { display: false } }, y: { beginAtZero: true, title: { display: true, text: yTitle }, grid: { color: "#e5e7eb" } } }
   };
 }
 
@@ -109,7 +109,7 @@ function renderHeatmap(matrix) {
     root.insertAdjacentHTML("beforeend", `<div class="heat-label">${matrix.labels[rowIndex]}</div>`);
     row.forEach((value) => {
       const intensity = Math.max(0.08, Math.abs(value));
-      const color = value >= 0 ? `rgba(141,124,246,${intensity})` : `rgba(255,114,94,${intensity})`;
+      const color = value >= 0 ? `rgba(37,99,235,${intensity})` : `rgba(220,38,38,${intensity})`;
       root.insertAdjacentHTML("beforeend", `<div class="heat-cell" style="background:${color}">${Number(value).toFixed(2)}</div>`);
     });
   });
