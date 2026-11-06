@@ -1,0 +1,9 @@
+.DS_Store
+.venv/
+__pycache__/
+*.pyc
+backend/local.settings.json
+backend/All_Diets.csv
+.azure/
+deploy/
+docs/evidence/*.png
